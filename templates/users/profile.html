@@ -1,0 +1,116 @@
+{% extends 'users/index.html' %}
+{% load static %}
+
+{% block content %}
+<h2>WELCOME {{user.username}}</h2>
+<a href="{% url 'logout' %}"><button class="btn btn-danger" >Logout</button></a>
+
+ <div class="card mb-3">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">First Name</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{ user.first_name }}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Last Name</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{ user.last_name }}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Email</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{ user.email }}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Address</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                        {{ user_profile.address }}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">City</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                        {{ user_profile.city }}
+                    </div>
+                  </div>
+                  <hr>
+                    <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Postcode</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                        {{ user_profile.postcode }}
+                    </div>
+                  </div>
+                    <hr>
+                    <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">State</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                        {{ user_profile.state }}
+                    </div>
+                  </div>
+                    <hr>
+                    <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Qualification</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                        {{ user_profile.qualification }}
+                    </div>
+                  </div>
+                    <hr>
+                    <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Skill 1</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                        {{ user_profile.skill1 }}
+                    </div>
+                  </div>
+                    <hr>
+                    <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Skill 2</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                        {{ user_profile.skill2 }}
+                    </div>
+                  </div>
+                    <hr>
+                    <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Skill 3</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                        {{ user_profile.skill3 }}
+                    </div>
+                  </div>
+
+                </div>
+
+<div class="mt-5 text-center"><a href="{% url 'editprofile' %}"><button class="btn btn-primary profile-button" >Edit Profile</button></a></div>
+
+
+
+
+{% endblock %}

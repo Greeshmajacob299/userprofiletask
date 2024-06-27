@@ -1,0 +1,22 @@
+{% extends 'users/index.html' %}
+{% load static %}
+
+{% block content %}
+<h2>Qualification of {{ user.username }}</h2>
+
+{% if qualifications %}
+    <ul>
+        {% for qualification in qualifications %}
+            <li>
+                <h3>{{ qualification.qualification }}</h3>
+                <p>{{ qualification.yearofpassing }}</p>
+                <p>{{ qualification.percentage}}</p>
+
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No qualification found for {{ user.username }}.</p>
+{% endif %}
+
+{% endblock %}

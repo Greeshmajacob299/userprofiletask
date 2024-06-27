@@ -1,0 +1,28 @@
+{% extends 'users/index.html' %}
+{% load static %}
+
+{% block content %}
+<h2>Projects for {{ user.username }}</h2>
+
+{% if projects %}
+    <ul>
+        {% for project in projects %}
+            <li>
+                <h3>{{ project.projectname }}</h3>
+                <p>{{ project.description }}</p>
+                {% if project.projectimage %}
+                    <img src="{{ project.projectimage.url }}" alt="{{ project.projectname }}">
+                 {% else %}
+                     <p>No image available</p>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No projects found for {{ user.username }}.</p>
+{% endif %}
+
+
+
+
+{% endblock %}

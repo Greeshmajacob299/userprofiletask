@@ -1,0 +1,23 @@
+{% extends 'users/index.html' %}
+{% load static %}
+
+{% block content %}
+<h2>Experience for {{ user.username }}</h2>
+
+{% if experiences %}
+    <ul>
+        {% for experience in experiences %}
+            <li>
+                <h3>{{ experience.companyname }}</h3>
+                <p>{{ experience.jobrole }}</p>
+                <p>{{ experience.duration }}</p>
+                <p>{{ experience.responsibility }}</p>
+
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No experience found for {{ user.username }}.</p>
+{% endif %}
+
+{% endblock %}

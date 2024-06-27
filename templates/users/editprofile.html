@@ -1,0 +1,78 @@
+{% extends 'users/index.html' %}
+{% load static %}
+{% block content %}
+
+
+{% for msg in messages %}
+{{ msg }}
+{% endfor %}
+<h1>EDIT PROFILE</h1>
+<form action="" method="post">
+  {% csrf_token %}
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="">FIRST NAME</label>
+      <input type="text" class="form-control" name="first_name" disabled value="{{ user.first_name }}">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="">LAST NAME</label>
+      <input type="text" class="form-control" name="last_name" disabled value="{{ user.last_name}}">
+    </div>
+  </div>
+    <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="">ADDRESS</label>
+      <input type="text" class="form-control" name="address" value="{{ user_profile.address }}" placeholder="Enter address">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="">EMAIL</label>
+      <input type="email" class="form-control" name="email" disabled value="{{ user.email }}" placeholder="Enter valid email">
+    </div>
+    </div>
+    <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="">CITY</label>
+      <input type="text" class="form-control" name="city" value="{{ user_profile.city }}" placeholder="Enter city">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="">POSTCODE</label>
+      <input type="text" class="form-control" name="postcode" value="{{ user_profile.postcode }}" placeholder="Enter postcode">
+    </div>
+    </div>
+     <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="">STATE</label>
+      <input type="text" class="form-control" name="state" value="{{ user_profile.state }}" placeholder="Enter state">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="">QUALIFICATION</label>
+      <input type="text" class="form-control" name="qualification" value="{{ user_profile.qualification }}" placeholder="Enter highest qualification">
+    </div>
+    </div>
+     <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="">SKILL 1</label>
+      <input type="text" class="form-control" name="skill1" value="{{ user_profile.skill1 }}" placeholder="Enter skill 1">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="">SKILL 2</label>
+      <input type="text" class="form-control" name="skill2" value="{{ user_profile.skill2 }}" placeholder="Enter skill 2">
+    </div>
+    </div>
+     <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="">SKILL 3</label>
+      <input type="text" class="form-control" name="skill3" value="{{ user_profile.skill3 }}" placeholder="Enter skill 3">
+    </div>
+
+    </div>
+    <div class="mt-5 text-center">
+      <button class="btn btn-primary profile-button" type="submit">Save Profile</button>
+   <a href="{% url 'profile' %}"><button class="btn btn-danger" type="submit">Back to Profile</button></a>
+    </div>
+
+</form>
+
+
+{% endblock %}
+

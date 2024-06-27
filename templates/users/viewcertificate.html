@@ -1,0 +1,25 @@
+{% extends 'users/index.html' %}
+{% load static %}
+
+{% block content %}
+<h2>Certificates of {{ user.username }}</h2>
+
+{% if certificates %}
+    <ul>
+        {% for certificate in certificates %}
+            <li>
+                <h3>{{ certificate.certificatename }}</h3>
+                {% if certificate.certificateimage %}
+                    <img src="{{ certificate.certificateimage.url }}">
+                 {% else %}
+                     <p>No image available</p>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No Certificates found for {{ user.username }}.</p>
+{% endif %}
+
+{% endblock %}
+
