@@ -1,6 +1,7 @@
 from django.contrib import messages, auth
 from django.contrib.auth.models import User
-from django.shortcuts import render, redirect
+from django.core.paginator import EmptyPage, Paginator
+from django.shortcuts import render, redirect, get_object_or_404
 
 from userapp.forms import ProjectForm, ExperienceForm, QualificationForm, CertificateForm
 from userapp.models import UserProfile, Project, Experience, Qualifications, Certification
@@ -104,11 +105,13 @@ def add_project(request):
 
     return render(request, 'users/addproject.html', {'form': form})
 
+
 def view_project(request):
     user_profile = request.user.userprofile
     projects = Project.objects.filter(user_profile=user_profile)
 
     return render(request, 'users/viewproject.html', {'projects': projects})
+
 
 def add_experience(request):
     user_profile = UserProfile.objects.get(user=request.user)
@@ -132,6 +135,7 @@ def view_experience(request):
 
     return render(request, 'users/viewexperience.html', {'experiences': experiences})
 
+
 def add_qualification(request):
     user_profile = UserProfile.objects.get(user=request.user)
 
@@ -147,11 +151,13 @@ def add_qualification(request):
 
     return render(request, 'users/addqualification.html', {'form': form})
 
+
 def view_qualification(request):
     user_profile = request.user.userprofile
     qualifications = Qualifications.objects.filter(user_profile=user_profile)
 
     return render(request, 'users/viewqualification.html', {'qualifications': qualifications})
+
 
 def add_certificate(request):
     user_profile = UserProfile.objects.get(user=request.user)
@@ -168,9 +174,47 @@ def add_certificate(request):
 
     return render(request, 'users/addcertificate.html', {'form': form})
 
+
 def view_certificate(request):
     user_profile = request.user.userprofile
     certificates = Certification.objects.filter(user_profile=user_profile)
 
     return render(request, 'users/viewcertificate.html', {'certificates': certificates})
+
+
+def home(request):
+    userviews = UserProfile.objects.all()
+    paginator = Paginator(userviews, 4)
+    page_number = request.GET.get('page')
+
+    try:
+        page = paginator.get_page(page_number)
+
+    except EmptyPage:
+        page = paginator.get_page(page_number.num_page)
+
+    return render(request, 'users/home.html', {'users': userviews, 'page': page})
+
+def profileview(request, user_id):
+    profiles = UserProfile.objects.get(id=user_id)
+    return render(request, 'users/profileview.html', {'profiles': profiles})
+
+def projectview(request, username):
+    user = get_object_or_404(User, username=username)
+    user_profile = get_object_or_404(UserProfile, user=user)
+    projects = Project.objects.filter(user_profile=user_profile)
+
+    return render(request, 'users/projectview.html', {'user': user, 'projects': projects})
+def certificateview(request, username):
+    user = get_object_or_404(User, username=username)
+    user_profile = get_object_or_404(UserProfile, user=user)
+    certificates = Certification.objects.filter(user_profile=user_profile)
+
+    return render(request, 'users/certificateview.html', {'user': user, 'certificates': certificates})
+def deleteuser(request,user_id):
+    profile = UserProfile.objects.get(id=user_id)
+
+    profile.delete()
+
+    return redirect('/')
 
